@@ -1,0 +1,35 @@
+.cabecera-principal {
+    background-color: #1e293b; /* Azul oscuro sobrio */
+    color: #ffffff;
+}
+
+.marca-sitio {
+    color: #ffffff;
+}
+
+.marca-sitio:hover {
+    color: #38bdf8;
+}
+
+.navbarPrincipal {
+    display: flex;
+    flex-wrap: wrap; /* Evita desbordamiento horizontal al estrechar la ventana */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 8px;
+}
+
+.navbarPrincipal a {
+    text-decoration: none;
+    padding: 8px 12px;
+    display: block;
+    color: #e2e8f0;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.navbarPrincipal a:hover {
+    background-color: #334155;
+    color: #ffffff;
+}
