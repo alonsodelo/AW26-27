@@ -1,0 +1,45 @@
+:root {
+    --color-principal: #ff7ea9;
+    --color-hover: rgb(237, 0, 67);
+    --color-blanco: #ffffff;
+    --color-borde: #fb6698;
+    --radio-borde: 6px;
+}
+
+.mainHeader {
+    background-color: var(--color-principal);
+}
+
+.mainHeader .navbar-brand span {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.navbarPrincipal .nav-link {
+    border-radius: var(--radio-borde);
+    padding: 8px 12px;
+    transition: background-color 0.2s;
+}
+
+.navbarPrincipal .nav-link:hover {
+    background-color: var(--color-hover);
+}
+
+.breadcrumb {
+    --bs-breadcrumb-divider: '>';
+    background-color: #ffb3cc;
+    padding: 10px 16px;
+    border-radius: var(--radio-borde);
+}
+
+.btn-curso {
+    background-color: var(--color-principal);
+    border-color: var(--color-borde);
+    color: var(--color-blanco);
+}
+
+.btn-curso:hover {
+    background-color: var(--color-hover);
+    border-color: var(--color-hover);
+    color: var(--color-blanco);
+}
