@@ -56,25 +56,25 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="nombre" class="form-label">Nombre:</label>
-                                    <input type="text" class="form-control formulario-fondo" id="nombre" name="nombre" placeholder="Ej. Ana" required>
+                                    <input type="text" class="form-control formulario-fondo" id="nombre" name="nombre" placeholder="Ej. Ana" required minlength="2" maxlength="100">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label for="apellidos" class="form-label">Apellidos:</label>
-                                    <input type="text" class="form-control formulario-fondo" id="apellidos" name="apellidos" placeholder="Ej. García López" required>
+                                    <input type="text" class="form-control formulario-fondo" id="apellidos" name="apellidos" placeholder="Ej. García López" required minlength="2" maxlength="100">
                                 </div>
                             </div>
 
                             <!-- Correo electrónico (type="email") -->
                             <div class="mb-3">
                                 <label for="email" class="form-label">Correo electrónico:</label>
-                                <input type="email" class="form-control formulario-fondo" id="email" name="email" placeholder="usuario@ejemplo.com" required>
+                                <input type="email" class="form-control formulario-fondo" id="email" name="email" placeholder="usuario@ejemplo.com" required maxlength="100">
                             </div>
 
                             <!-- Contraseña (type="password") + Texto de ayuda (Diapositiva 48) -->
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña:</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <input type="password" class="form-control" id="password" name="password" required minlength="8" maxlength="255" pattern="(?=.*[A-Za-z])(?=.*\d).{8,}">
                                 <small class="form-text peque">
                                     Usa una contraseña segura con letras y números.
                                 </small>
@@ -82,7 +82,7 @@
                             <!-- Confirmación de contraseña (type="password") -->
                             <div class="mb-4">
                                 <label for="confirmarPassword" class="form-label">Confirmar contraseña:</label>
-                                <input type="password" class="form-control" id="confirmarPassword" name="confirmarPassword" required>
+                                <input type="password" class="form-control" id="confirmarPassword" name="confirmarPassword" required minlength="8" maxlength="255" pattern="(?=.*[A-Za-z])(?=.*\d).{8,}">
                             </div>
 
                             <!-- Botones de acción -->
