@@ -1,9 +1,14 @@
 :root {
     --color-principal: #ff7ea9;
-    --color-hover: rgb(237, 0, 67);
+    --color-hover: #ed0043;
     --color-blanco: #ffffff;
     --color-borde: #fb6698;
+    --color-fondo: #ffa5c3;
     --radio-borde: 6px;
+}
+
+body {
+    background-color: var(--color-fondo);
 }
 
 .mainHeader {
@@ -40,6 +45,36 @@
 
 .btn-curso:hover {
     background-color: var(--color-hover);
+    border-color: var(--color-hover);
+    color: var(--color-blanco);
+}
+
+.tarjeta-registro {
+    border: 1px solid var(--color-hover);
+    border-radius: 10px;
+    background-color: var(--color-principal);
+}
+
+.formulario-fondo {
+    border-color: #ff95b7;
+    background-color:#fac8d8;
+}
+
+.peque {
+    color: black;
+    border-radius: 4px;
+    background-color: #ff3b7c;
+}
+
+.btn-registro {
+    color: black;
+    background-color: #ff3b7c;
+    border: black;
+    border-radius: 4px;
+}
+
+.btn-registro:hover {
+     background-color: var(--color-hover);
     border-color: var(--color-hover);
     color: var(--color-blanco);
 }

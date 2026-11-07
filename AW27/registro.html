@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Centro de Formación</title> <!--Falta elegir el nombre de la página creo que es centro Formación-->
+   
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header class="mainHeader">
+
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/fih.png" alt="Logotipo del Centro de Formación" width="40" height="40" class="me-2">
+                    <span>Centro de Formación</span>
+                </a>
+        
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuOpciones">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menuOpciones">
+                    <ul class="navbar-nav me-auto navbarPrincipal">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cursos.html">Cursos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="docentes.html">Docentes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="aulas.html">Aulas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="matriculas.html">Mis Matrículas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="accesibilidad.html">Accesibilidad</a></li>
+                        <li class="nav-item"><a class="nav-link" href ="administracion.html">Administración</a></li>
+                    </ul>
+
+                     <ul class="navbar-nav ms-auto navbarPrincipal align-items-lg-center gap-2">
+                        <li class="nav-item"><a class="nav-link" href= "perfil.html">Perfil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cerrarSesion.html">Cerrar sesión</a></li>
+                        <li class="nav-item"><a class="nav-link" href="registro.html">Registrarse</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<main class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+
+            <div class="card tarjeta-registro">
+                <div class="card-body p-4">
+                    <h1 class="h3 text-center mb-4">Crear una cuenta</h1>
+                    <form action="#" method="post">
+                            <!-- Nombre y Apellidos organizados en 2 columnas con el Grid de Bootstrap -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nombre" class="form-label">Nombre:</label>
+                                    <input type="text" class="form-control formulario-fondo" id="nombre" name="nombre" placeholder="Ej. Ana" required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="apellidos" class="form-label">Apellidos:</label>
+                                    <input type="text" class="form-control formulario-fondo" id="apellidos" name="apellidos" placeholder="Ej. García López" required>
+                                </div>
+                            </div>
+
+                            <!-- Correo electrónico (type="email") -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Correo electrónico:</label>
+                                <input type="email" class="form-control formulario-fondo" id="email" name="email" placeholder="usuario@ejemplo.com" required>
+                            </div>
+
+                            <!-- Contraseña (type="password") + Texto de ayuda (Diapositiva 48) -->
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña:</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                                <small class="form-text peque">
+                                    Usa una contraseña segura con letras y números.
+                                </small>
+                            </div>
+                            <!-- Confirmación de contraseña (type="password") -->
+                            <div class="mb-4">
+                                <label for="confirmarPassword" class="form-label">Confirmar contraseña:</label>
+                                <input type="password" class="form-control" id="confirmarPassword" name="confirmarPassword" required>
+                            </div>
+
+                            <!-- Botones de acción -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-registro">Registrarse</button>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+
+</footer>
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
