@@ -51,17 +51,19 @@
             <div class="card tarjeta-registro">
                 <div class="card-body p-4">
                     <h1 class="h3 text-center mb-4">Crear una cuenta</h1>
-                    <form action="#" method="post">
+                    <form id="formRegistro" action="#" method="post" novalidate>
                             <!-- Nombre y Apellidos organizados en 2 columnas con el Grid de Bootstrap -->
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="nombre" class="form-label">Nombre:</label>
                                     <input type="text" class="form-control formulario-fondo" id="nombre" name="nombre" placeholder="Ej. Ana" required minlength="2" maxlength="100">
+                                    <div class="invalid-feedback" id="error-nombre"></div>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label for="apellidos" class="form-label">Apellidos:</label>
                                     <input type="text" class="form-control formulario-fondo" id="apellidos" name="apellidos" placeholder="Ej. García López" required minlength="2" maxlength="100">
+                                    <div class="invalid-feedback" id="error-apellidos"></div>
                                 </div>
                             </div>
 
@@ -69,12 +71,14 @@
                             <div class="mb-3">
                                 <label for="email" class="form-label">Correo electrónico:</label>
                                 <input type="email" class="form-control formulario-fondo" id="email" name="email" placeholder="usuario@ejemplo.com" required maxlength="100">
+                                <div class="invalid-feedback" id="error-email"></div>
                             </div>
 
                             <!-- Contraseña (type="password") + Texto de ayuda (Diapositiva 48) -->
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña:</label>
                                 <input type="password" class="form-control" id="password" name="password" required minlength="8" maxlength="255" pattern="(?=.*[A-Za-z])(?=.*\d).{8,}">
+                                <div class="invalid-feedback" id="error-password"></div>
                                 <small class="form-text peque">
                                     Usa una contraseña segura con letras y números.
                                 </small>
@@ -83,6 +87,7 @@
                             <div class="mb-4">
                                 <label for="confirmarPassword" class="form-label">Confirmar contraseña:</label>
                                 <input type="password" class="form-control" id="confirmarPassword" name="confirmarPassword" required minlength="8" maxlength="255" pattern="(?=.*[A-Za-z])(?=.*\d).{8,}">
+                                <div class="invalid-feedback" id="error-passwordConfirm"></div>
                             </div>
 
                             <!-- Botones de acción -->
@@ -90,6 +95,7 @@
                                 <button type="submit" class="btn btn-registro">Registrarse</button>
                             </div>
                         </form>
+                        <div id="resumenConfirmacion" class="mt-4"></div>
                 </div>
             </div>
         </div>
@@ -98,7 +104,8 @@
 <footer>
 
 </footer>
-<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.bundle.min.js" defer></script>
+<script src="js/registro.js" defer></script>
 </body>
 
 </html>
