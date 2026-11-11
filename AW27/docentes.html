@@ -25,9 +25,9 @@
 
                 <div class="collapse navbar-collapse" id="menuOpciones">
                     <ul class="navbar-nav ms-auto navbarPrincipal">
-                        <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="cursos.html">Cursos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="docentes.html">Docentes</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="docentes.html">Docentes</a></li>
                         <li class="nav-item"><a class="nav-link" href="aulas.html">Aulas</a></li>
                         <li class="nav-item"><a class="nav-link" href="matriculas.html">Mis Matrículas</a></li>
                         <li class="nav-item"><a class="nav-link" href= "perfil.html">Perfil</a></li>
@@ -40,13 +40,85 @@
         </nav>
     </header>
 
-<main class="container my-4"><h1>Centro de Formación</h1>
-<p>Contenido principal de docentes</p>
-</main>
-<footer>
-    
-</footer>
-<script src="js/bootstrap.bundle.min.js"></script>
-</body>
+<main class="container my-4">
+        <div class="mb-4">
+            <h1>Docentes</h1>
+            <p>Consulta el profesorado del centro de formación</p>
+        </div>
 
+        <!-- Filtros y buscador superior -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-8">
+                <input type="text" class="form-control formulario-fondo" placeholder="Buscar por nombre de docente...">
+            </div>
+            <div class="col-md-4">
+                <select class="form-select formulario-fondo">
+                    <option selected>Filtrar por especialidad</option>
+                    <option value="bd">Bases de Datos</option>
+                    <option value="web">Desarrollo Web</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Tabla -->
+        <div class="card shadow-sm border rounded-3 overflow-hidden formulario-fondo">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light border-bottom">
+                            <tr>
+                                <th scope="col" class="ps-4" style="width: 80px;">Foto</th>
+                                <th scope="col">Nombre y Apellidos</th>
+                                <th scope="col">Especialidad</th>
+                                <th scope="col">Correo Electrónico</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col" class="text-center pe-4">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Docente 1 -->
+                            <tr>
+                                <td class="ps-4">
+                                    <img src="img/fih.png" alt="Foto docente 1" class="rounded-circle border" width="45" height="45" style="object-fit: cover;">
+                                </td>
+                                <td class="fw-bold">Nombre del docente 1</td>
+                                <td>Especialidad del docente 1</td>
+                                <td>docente1@ejemplo.com</td>
+                                <td>+34 111 11 11 11</td>
+                                <td class="text-center pe-4"><span class="badge bg-success">Activo</span></td>
+                            </tr>
+                            <!-- Docente 2 -->
+                            <tr>
+                                <td class="ps-4">
+                                    <img src="img/fih.png" alt="Foto docente 2" class="rounded-circle border" width="45" height="45" style="object-fit: cover;">
+                                </td>
+                                <td class="fw-bold">Nombre del docente 2</td>
+                                <td>Especialidad del docente 2</td>
+                                <td>docente2@ejemplo.com</td>
+                                <td>+34 222 22 22 22</td>
+                                <td class="text-center pe-4"><span class="badge bg-success">Activo</span></td>
+                            </tr>
+                            <!-- Docente 3 -->
+                            <tr>
+                                <td class="ps-4">
+                                    <img src="img/fih.png" alt="Foto docente 3" class="rounded-circle border" width="45" height="45" style="object-fit: cover;">
+                                </td>
+                                <td class="fw-bold">Nombre del docente 3</td>
+                                <td>Especialidad del docente 3</td>
+                                <td>docente3@ejemplo.com</td>
+                                <td>+34 333 33 33 33</td>
+                                <td class="text-center pe-4"><span class="badge bg-secondary">Inactivo</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js" defer></script>
+</body>
 </html>
