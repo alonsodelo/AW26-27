@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const nombre = inputNombre.value.trim();
         const email = inputEmail.value.trim();
         const asunto = inputAsunto.value.trim();
-        const mensaje = inputMensaje.value.trim
+        const mensaje = inputMensaje.value.trim();
 
         const asuntosValidos = ["Información sobre cursos", "Duda sobre matrículas", "Incidencia técnica", "Otro motivo"];
         let ok = true;
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
     function mostrarError(inputElemento, idDivError, mensaje) {
-        inputElemento.classList.add("is-invalid"); // Clase de Bootstrap que pone el borde rojo y activa .invalid-feedback
+        inputElemento.classList.add("is-invalid"); 
         const divError = document.getElementById(idDivError);
         divError.textContent = mensaje;
     }
@@ -75,5 +75,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const mensajesError = formulario.querySelectorAll(".invalid-feedback");
         mensajesError.forEach((div) => (div.textContent = ""));
+    }
+
+    function mostrarConfirmacionDOM(nombre, email){
+        const alerta = document.createElement("div");
+        alerta.className = "alert, alert-success";
+        alerta.setAttribute("role", "alert");
+
+        const titulo = document.createElement("h2");
+        titulo.className = "h5 fw-bold mb-2";
+        titulo.textContent = `Se ha enviado correctamente el mensaje con nombre ${nombre} y email ${email}`;
+
+        alerta.appendChild(titulo);
+
+        contenedorResumen.appendChild(alerta);
     }
 });
