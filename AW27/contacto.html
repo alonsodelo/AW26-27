@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Centro de Formación</title> <!--Falta elegir el nombre de la página creo que es centro Formación-->
+   
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header class="mainHeader">
+
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/fih.png" alt="Logotipo del Centro de Formación" width="40" height="40" class="me-2">
+                    <span>Centro de Formación</span>
+                </a>
+        
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuOpciones">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menuOpciones">
+                    <ul class="navbar-nav ms-auto navbarPrincipal">
+                        <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cursos.html">Cursos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="docentes.html">Docentes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="aulas.html">Aulas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="matriculas.html">Mis Matrículas</a></li>
+                        <li class="nav-item"><a class="nav-link" href= "perfil.html">Perfil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="accesibilidad.html">Accesibilidad</a></li>
+                        <li class="nav-item"><a class="nav-link" href ="administracion.html">Administración</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cerrarSesion.html">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<main class="container my-4">
+    <h1 class="h3 text-center mb-4">Contacta con nosotros</h1>
+    <form id="formContacto" action="#" method="post" novalidate>
+        <div class="mb-3">
+            <label for="nombreContacto" class="form-label">Nombre completo:</label>
+            <input type="text" class="form-control formulario-fondo" id="nombreContacto" name="nombreContacto" placeholder="Tu nombre" required minlength="2" maxlength="100">
+            <div class="invalid-feedback" id="error-nombreContacto"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="emailContacto" class="form-label">Correo electrónico</label>
+            <input type="text" class="form-control formulario-fondo" id="emailContacto" name="emailContacto" placeholder="Tu email" required minlength="2" maxlength="255">
+            <div class="invalid-feedback" id="error-emailContacto"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="asuntoContacto" class="form-label">Motivo de la consulta:</label>
+            <select class="form-control formulario-fondo" id="asuntoContacto" name="asuntoContacto" required>
+                <option value="">Selecciona una opción:</option>
+                <option value="Información sobre cursos">Información sobre cursos</option>
+                <option value="Duda sobre matrículas">Duda sobre matrículas</option>
+                <option value="Incidencia técnica">Incidencia técnica</option>
+                <option value="Otro motivo">Otro motivo</option>
+            </select>
+            <div class="invalid-feedback" id="error-asuntoContacto"></div>
+        </div>
+
+        <div class="mb-4">
+            <label for="mensajeContacto" class="form-label">Mensaje:</label>
+            <textarea class="form-control formulario-fondo" id="mensajeContacto" name="mensajeContacto" rows="4" placeholder="Escribe aquí tu consulta..." required minlength="10" maxlength="1000"></textarea>
+            <div class="invalid-feedback" id="error-mensajeContacto"></div>
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-registro">Enviar mensaje</button>
+        </div>
+    </form>
+
+    <div id="resumenContacto" class="mt-4"></div>
+</main>
+<footer>
+
+</footer> 
+<script src="js/bootstrap.bundle.min.js" defer></script>
+<script src="js/contacto.js" defer></script>
+</body>
+</html>
