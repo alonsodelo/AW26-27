@@ -1,0 +1,14 @@
+{
+  "name": "aw27",
+  "version": "1.0.0",
+  "description": "Proyecto Centro de Formacion",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
