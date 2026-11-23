@@ -23,17 +23,20 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="menuOpciones">
-                    <ul class="navbar-nav ms-auto navbarPrincipal">
+                  <div class="collapse navbar-collapse" id="menuOpciones">
+                    <ul class="navbar-nav me-auto navbarPrincipal">
                         <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="cursos.html">Cursos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cursos.html">Cursos</a></li>
                         <li class="nav-item"><a class="nav-link" href="docentes.html">Docentes</a></li>
                         <li class="nav-item"><a class="nav-link" href="aulas.html">Aulas</a></li>
                         <li class="nav-item"><a class="nav-link" href="matriculas.html">Mis Matrículas</a></li>
-                        <li class="nav-item"><a class="nav-link" href= "perfil.html">Perfil</a></li>
                         <li class="nav-item"><a class="nav-link" href="accesibilidad.html">Accesibilidad</a></li>
                         <li class="nav-item"><a class="nav-link" href ="administracion.html">Administración</a></li>
-                        <li class="nav-item"><a class="nav-link" href="cerrarSesion.html">Cerrar sesión</a></li>
+                    </ul>
+
+                     <ul class="navbar-nav ms-auto navbarPrincipal align-items-lg-center gap-2" id="menuUsuario">
+                        <li class="nav-item"><a class="nav-link" href= "login.html">Iniciar Sesión</a></li>
+                        <li class="nav-item"><a class="nav-link" href="registro.html">Registrarse</a></li>
                     </ul>
                 </div>
             </div>
@@ -41,16 +44,67 @@
     </header>
 
 <main class="container my-4">
-    <h1>Centro de Formación</h1>
-<p>Contenido principal de cursos</p>
+    <main class="container my-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+        <h1 class="mb-0";">Catálogo de Cursos</h1>
+        <span class="badge fs-6" id="contadorCursos">0 cursos visibles</span>
+    </div>
 
-<a class="btn btn-curso" href="detalle-curso.html">Detalle curso supongo</a>
+    <div class="mb-4">
+        <label for="buscadorCursos" class="form-label fw-bold" id="textoBuscarCurso">Buscar curso por nombre:</label>
+        <input type="search" id="buscadorCursos" class="form-control formulario-fondo" placeholder="Escribe para filtrar">
+    </div>
+
+    <div id="contenedorCursos" class="row g-4 mb-5"></div>
+
+    <section class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+            <div class="card tarjeta-registro">
+                <div class="card-body p-4">
+                    <h2 class="h4 text-center mb-4">Añadir nuevo curso al catálogo</h2>
+
+                    <form id="formNuevoCurso">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="nombreCurso" class="form-label">Nombre del curso:</label>
+                                <input type="text" class="form-control formulario-fondo" id="nombreCurso" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="categoriaCurso" class="form-label">Categoría:</label>
+                                <input type="text" class="form-control formulario-fondo" id="categoriaCurso" placeholder="Ej. Programación" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="duracionCurso" class="form-label">Duración (horas):</label>
+                                <input type="number" class="form-control formulario-fondo" id="duracionCurso" min="1" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="plazasCurso" class="form-label">Plazas disponibles:</label>
+                                <input type="number" class="form-control formulario-fondo" id="plazasCurso" min="0" required>
+                            </div>
+                        </div>
+
+                        <div id="errorFormularioCurso" class="text-danger fw-bold mb-3"></div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-registro">Añadir curso</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
      
 </main>
 <footer>
     
 </footer>
 <script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/sesion.js" defer></script>
+<script src="js/cursos.js" defer></script>
 </body>
 
 </html>

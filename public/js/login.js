@@ -36,6 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (ok) {
           mostrarMensajeExito(email);
+          const estadoSesion = {
+                activa: true
+            };
+
+            try {
+                localStorage.setItem("sesionUsuario", JSON.stringify(estadoSesion));
+            } catch (e) {
+                console.warn("No se pudo guardar el estado de la sesión:", e);
+            }
+        
             setTimeout(() => {
                 window.location.href = "index.html";
             }, 1200);

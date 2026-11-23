@@ -65,13 +65,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (ok) {
+            const estadoSesion = {
+                activa: true,
+                nombre: nombre
+            };
+
+            try {
+                localStorage.setItem("sesionUsuario", JSON.stringify(estadoSesion));
+            } catch (e) {
+                console.warn("No se ha podido guardar la sesión en localStorage:", e);
+            }
+
             mostrarConfirmacionDOM(nombre, apellidos, email);
-            formulario.reset(); // Opcional: limpia las cajas tras registrarse con éxito
+            formulario.reset();
+
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 1500);
         }
     });
 
     function mostrarError(inputElemento, idDivError, mensaje) {
-        inputElemento.classList.add("is-invalid"); // Clase de Bootstrap que pone el borde rojo y activa .invalid-feedback
+        inputElemento.classList.add("is-invalid"); 
         const divError = document.getElementById(idDivError);
         divError.textContent = mensaje;
     }
