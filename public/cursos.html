@@ -50,10 +50,27 @@
         <span class="badge fs-6" id="contadorCursos">0 cursos visibles</span>
     </div>
 
+
     <div class="mb-4">
-        <label for="buscadorCursos" class="form-label fw-bold" id="textoBuscarCurso">Buscar curso por nombre:</label>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <label for="buscadorCursos" class="form-label fw-bold" id="textoBuscarCurso">Buscar curso por nombre:</label>
+            <div class="flex-wrap d-flex align-items-center gap-2">
+                <div class="dropdown">
+                <button class="btn btn-curso btn-sm dropdown-toggle" type="button" id="btnFiltroPlazas" data-bs-toggle="dropdown">
+                    Plazas
+                </button>
+                    <div class="dropdown-menu" id="menuPlazas">
+                        <button class="dropdown-item" type="button" data-valor="todas">Todos</button>
+                        <button class="dropdown-item" type="button" data-valor="disponibles">Con plazas disponibles</button>
+                        <button class="dropdown-item" type="button" data-valor="completos">Completos</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <input type="search" id="buscadorCursos" class="form-control formulario-fondo" placeholder="Escribe para filtrar">
+        </div>
     </div>
+
 
     <div id="contenedorCursos" class="row g-4 mb-5"></div>
 

@@ -1,18 +1,42 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let cursos = [
-        { id: 1, nombre: "Estudiar mogollon de programar", categoria: "Programación", duracion: 40, plazas: 12 },
-        { id: 2, nombre: "Diseño de una web rosa muy fea", categoria: "Diseño", duracion: 25, plazas: 0 }, 
-        { id: 3, nombre: "Sistemas de bases de datos", categoria: "Sistemas", duracion: 30, plazas: 8 }
+    const cursosIniciales = [
+    { id: 1, nombre: "Estudiar mogollon de programar", categoria: "Programación", duracion: 40, plazas: 12 },
+    { id: 2, nombre: "Diseño de una web rosa muy fea", categoria: "Diseño", duracion: 25, plazas: 0 }, 
+    { id: 3, nombre: "Sistemas de bases de datos", categoria: "Sistemas", duracion: 30, plazas: 8 }
     ];
 
-    let siguienteId = 4;
+    
+    function guardarCursos() {
+        try {
+            localStorage.setItem("cursos", JSON.stringify(cursos));
+        } catch (e) {
+            console.warn("No se pudieron guardar los cursos:", e);
+        }
+    }
+
+    let cursos = cursosIniciales;
+    try {
+        const datosGuardados = localStorage.getItem("cursos");
+        if (datosGuardados) {
+            cursos = JSON.parse(datosGuardados);
+        }
+    } catch (e) {
+        console.warn("Error al leer localStorage, se usan los cursos iniciales:", e);
+    }
+   
+    guardarCursos();
+
+    let siguienteId = cursos.length > 0 ? Math.max(...cursos.map(c => c.id)) + 1 : 1;
 
     const contenedorCursos = document.getElementById("contenedorCursos");
     const contadorCursos = document.getElementById("contadorCursos");
     const buscador = document.getElementById("buscadorCursos");
     const formulario = document.getElementById("formNuevoCurso");
     const errorFormulario = document.getElementById("errorFormularioCurso");
+    const btnFiltroPlazas = document.getElementById("btnFiltroPlazas");
+    let filtroPlazasActual = localStorage.getItem("filtroPlazas") || "todas";
 
+    renderizarCursos(cursos);
     function renderizarCursos(listaCursos) {
         contenedorCursos.textContent = "";
 
@@ -98,9 +122,19 @@ document.addEventListener("DOMContentLoaded", () => {
     function actualizarVista() {
         const textoBusqueda = buscador.value.trim().toLowerCase();
 
-        const cursosFiltrados = cursos.filter((curso) =>
-            curso.nombre.toLowerCase().includes(textoBusqueda)
-        );
+        const cursosFiltrados = cursos.filter((curso) => {
+            let ok = true;
+            switch (filtroPlazasActual){
+                case "disponibles":
+                 ok = curso.plazas > 0;
+                 break;
+
+                case "completos":
+                 ok = curso.plazas === 0;
+                 break;        
+            }
+            return ok && curso.nombre.toLowerCase().includes(textoBusqueda)
+        });
 
         renderizarCursos(cursosFiltrados);
     }
@@ -109,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function eliminarCurso(idCurso) {
         cursos = cursos.filter((curso) => curso.id !== idCurso);
+        guardarCursos();
         actualizarVista();
     }
 
@@ -135,10 +170,18 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         cursos.push(nuevoCurso);
-
+        guardarCursos();
         formulario.reset();
         actualizarVista();
     });
 
+    document.querySelectorAll("#menuPlazas .dropdown-item").forEach((option) => {
+        option.addEventListener("click", () => {
+            filtroPlazasActual = option.dataset.valor;
+            localStorage.setItem("filtroPlazas", filtroPlazasActual);
+            document.getElementById("btnFiltroPlazas").textContent = option.textContent;
+            actualizarVista();
+        }) 
+    })
     actualizarVista();
 });
