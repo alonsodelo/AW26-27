@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const errorFormulario = document.getElementById("errorFormularioCurso");
     const btnFiltroPlazas = document.getElementById("btnFiltroPlazas");
     let filtroPlazasActual = localStorage.getItem("filtroPlazas") || "todas";
+    let textoBusqueda = sessionStorage.getItem("busqueda") ?? "";
 
     renderizarCursos(cursos);
     function renderizarCursos(listaCursos) {
@@ -120,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function actualizarVista() {
-        const textoBusqueda = buscador.value.trim().toLowerCase();
+        textoBusqueda = sessionStorage.getItem("busqueda") ?? "";
 
         const cursosFiltrados = cursos.filter((curso) => {
             let ok = true;
@@ -139,7 +140,17 @@ document.addEventListener("DOMContentLoaded", () => {
         renderizarCursos(cursosFiltrados);
     }
 
-    buscador.addEventListener("input", actualizarVista);
+    let temporizador;
+    buscador.addEventListener("input", function () { // ponemos debouncer aqui para que no pete
+
+        sessionStorage.setItem("busqueda", buscador.value.trim().toLowerCase());
+
+        clearTimeout(temporizador);
+
+        temporizador = setTimeout(() => {
+            actualizarVista();
+        }, 500);
+    });
 
     function eliminarCurso(idCurso) {
         cursos = cursos.filter((curso) => curso.id !== idCurso);
