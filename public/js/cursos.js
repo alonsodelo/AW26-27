@@ -8,16 +8,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const errorFormulario = document.getElementById("errorFormularioCurso");
     const btnFiltroPlazas = document.getElementById("btnFiltroPlazas");
 
-    let filtroPlazasActual = localStorage.getItem("filtroPlazas") || "todas";
-    let textoBusqueda = sessionStorage.getItem("busqueda") ?? "";
+    let filtroPlazasActual = "todas";
+    let textoBusqueda = "";
+    try {
+        filtroPlazasActual = localStorage.getItem("filtroPlazas") || "todas";
+        textoBusqueda = sessionStorage.getItem("busqueda") ?? "";
+    } catch (e) {
+        console.warn("No se pudieron leer los filtros guardados:", e);
+    }
 
     if (buscador) {
         buscador.value = textoBusqueda;
     }
 
+    const etiquetasPlazas = {
+        todas: "Todas",
+        disponibles: "Con plazas",
+        completos: "Completos"
+    };
+    if (btnFiltroPlazas) {
+        btnFiltroPlazas.textContent = `${etiquetasPlazas[filtroPlazasActual] ?? "Todas"}`;
+    }
+
     function mostrarError(mensaje) {
         contenedorCursos.textContent = "";
-        contadorCursos.textContent = "0 cursos visibles";
+        if (contadorCursos) {
+            contadorCursos.textContent = "0 cursos visibles";
+        }
 
         const alerta = document.createElement("div");
         alerta.className = "alert alert-danger";
@@ -28,7 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderizarCursos(listaCursos) {
         contenedorCursos.textContent = "";
-        contadorCursos.textContent = `${listaCursos.length} ${listaCursos.length === 1 ? "curso visible" : "cursos visibles"}`;
+        if (contadorCursos) {
+            contadorCursos.textContent = `${listaCursos.length} ${listaCursos.length === 1 ? "curso visible" : "cursos visibles"}`;
+        }
 
         if (listaCursos.length === 0) {
             const avisoVacio = document.createElement("p");
@@ -54,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const titulo = document.createElement("h3");
             titulo.className = "card-title h5";
-            titulo.textContent = curso.nombre;
+            titulo.textContent = curso.nombre ?? "Curso sin título";
 
             if (estaCompleto) {
                 const badgeCompleto = document.createElement("span");
@@ -65,11 +84,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const infoEspecialidad = document.createElement("p");
             infoEspecialidad.className = "card-text mb-1";
-            infoEspecialidad.textContent = `Área: ${curso.especialidad} · Docente: ${curso.docente}`;
+            infoEspecialidad.textContent = `Área: ${curso.especialidad ?? "General"} · Docente: ${curso.docente ?? "Por asignar"}`;
 
             const infoAula = document.createElement("p");
             infoAula.className = "card-text mb-1";
-            infoAula.textContent = `Aula: ${curso.aula} (${curso.edificio})`;
+            infoAula.textContent = `Aula: ${curso.aula ?? "Por asignar"} (${curso.edificio ?? "Centro"})`;
 
             const infoHorario = document.createElement("p");
             infoHorario.className = "card-text mb-1";
@@ -104,8 +123,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function actualizarVista() {
-        textoBusqueda = sessionStorage.getItem("busqueda") ?? "";
-
         const cursosFiltrados = cursos.filter((curso) => {
             let ok = true;
             switch (filtroPlazasActual) {
@@ -116,51 +133,67 @@ document.addEventListener("DOMContentLoaded", () => {
                     ok = Number(curso.plazas) === 0;
                     break;
             }
-            return ok && curso.nombre.toLowerCase().includes(textoBusqueda);
+            return ok && (curso.nombre ?? "").toLowerCase().includes(textoBusqueda);
         });
 
         renderizarCursos(cursosFiltrados);
     }
 
-    fetch("/api/cursos")
-        .then((r) => {
-            if (!r.ok) throw new Error("Error HTTP");
-            return r.json();
-        })
-        .then((datos) => {
-            cursos = datos;
+    // 2. Petición Fetch a la API REST (Sesión 6)
+    async function cargarCursosDesdeAPI() {
+        try {
+            const respuesta = await fetch("/api/cursos");
+            if (!respuesta.ok) {
+                throw new Error(`Error HTTP: ${respuesta.status}`);
+            }
+            cursos = await respuesta.json();
             actualizarVista();
-        })
-        .catch(() => {
-            mostrarError("No se pudo cargar el catálogo de cursos desde el servidor.");
-        });
+        } catch (error) {
+            console.error("Error al cargar el catálogo:", error);
+            mostrarError("No se pudo cargar el catálogo de cursos.");
+        }
+    }
 
     let temporizador;
     if (buscador) {
         buscador.addEventListener("input", () => {
-            sessionStorage.setItem("busqueda", buscador.value.trim().toLowerCase());
+            textoBusqueda = buscador.value.trim().toLowerCase();
+            try {
+                sessionStorage.setItem("busqueda", textoBusqueda);
+            } catch (e) {
+                console.warn("No se pudo guardar la búsqueda:", e);
+            }
             clearTimeout(temporizador);
             temporizador = setTimeout(() => {
                 actualizarVista();
-            }, 300);
+            }, 500);
         });
     }
 
     if (formulario) {
         formulario.addEventListener("submit", (evento) => {
             evento.preventDefault();
-            errorFormulario.textContent = "El alta persistente de cursos (POST /api/cursos) se habilitará en la entrega final.";
+            if (errorFormulario) {
+                errorFormulario.textContent = "No esta todavia metelo por sql";
+            }
         });
     }
 
     document.querySelectorAll("#menuPlazas .dropdown-item").forEach((option) => {
         option.addEventListener("click", () => {
             filtroPlazasActual = option.dataset.valor;
-            localStorage.setItem("filtroPlazas", filtroPlazasActual);
+            try {
+                localStorage.setItem("filtroPlazas", filtroPlazasActual);
+            } catch (e) {
+                console.warn("No se pudo guardar el filtro de plazas:", e);
+            }
             if (btnFiltroPlazas) {
-                btnFiltroPlazas.textContent = option.textContent;
+                btnFiltroPlazas.textContent = `Plazas: ${option.textContent}`;
             }
             actualizarVista();
         });
     });
+
+    // 3. Arrancamos la carga inicial desde MariaDB
+    cargarCursosDesdeAPI();
 });
