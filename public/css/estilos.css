@@ -140,3 +140,12 @@ h1 {
     border-radius: 10px;
     color: #ffffff;
 }
+
+#contenedorCursos .card {
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+#contenedorCursos .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.14);
+}
